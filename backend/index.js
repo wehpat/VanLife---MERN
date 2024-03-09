@@ -1,28 +1,25 @@
 import express from "express"
 import { PORT, mongoURL } from "./config.js"
 import mongoose from "mongoose";
-import { Van } from "../backend/model/vanModel.js"
+import vansRoute from "./routes/vansRoute.js"
+import { Van } from "./model/vanModel.js";
+import hostRoute from "./routes/hostRoute.js"
+
+import cors from "cors";
 
 const app = express();
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
     console.log(req)
     return res.status(234).send("Welcome to my VanLIFE project")
 })
 
-app.get("/vans", async (req, res) => {
-    try {
-        const vans = await Van.find({});
+app.use(cors())
 
-        return res.status(200).json({
-            count: vans.length,
-            data: vans
-        })
-    } catch (err) {
-        console.log(err);
-        res.status(500).send({messsage: err.messsage})
-    }
-})
+app.use('/vans', vansRoute)
+app.use('/host', hostRoute)
 
 mongoose
     .connect(mongoURL)
