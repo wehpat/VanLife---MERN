@@ -27,4 +27,26 @@ export const createVan = async (req, res, next) => {
     } catch (err) {
         next(err);
     }
+};
+
+export const getVans = async (req, res, next) => {
+    try {
+        const vans = await Van.find({});
+        return res.status(200).json({
+            count: vans.length,
+            data: vans
+        });
+    } catch (err) {
+        next(err);
+    }
+}
+
+export const getVan = async (req, res, next) => {
+    try {
+        const { vanId } = req.params;
+        const van = await Van.findById(vanId);
+        return res.status(200).json(van);
+    } catch (err) {
+        next(err);
+    }
 }
