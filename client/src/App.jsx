@@ -15,6 +15,8 @@ import HostVanDetail from "./pages/Host/HostVanDetail.jsx";
 import HostVanInfo from "./pages/Host/HostVanInfo.jsx";
 import HostVansPricing from "./pages/Host/HostVanPricing.jsx"
 import HostVanPhotos from './pages/Host/HostVanPhotos.jsx';
+import Vans from './pages/Van/Van.jsx';
+import VanDetail from './pages/Van/VanDetail.jsx';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path='/' element={<Layout/>}>
         <Route index element={<Home/>}/>
         <Route path='about' element={<About/>}/>
+        <Route path='vans' element={<Vans/>}/>
+        <Route path='vans/:id' element={<VanDetail/>}/>
         <Route path='login' element={<Login/>}/>
         <Route path='signup' element={<Signup/>}/>
         </Route>
