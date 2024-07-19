@@ -17,6 +17,7 @@ export default function Vans() {
         if(res.ok) {
           const data = await res.json();
           setVans(data.data);
+          setLoading(false);
         }
       } catch (err) {
         setError(true);
